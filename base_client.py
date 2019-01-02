@@ -109,7 +109,7 @@ class BaseClient(threading.Thread):
             self.play_mode = self.aural_result["play_mode"]
         # 視覚メッセージの更新
         elif message.startswith("(see "):
-            self.visual_result = analyze.analyzeVisualMessage(message)
+            self.visual_result = analyze.analyzeVisualMessage(message, self.play_mode, self.dKickOffX, self.dKickOffY)
 
         # サーバパラメータの処理
         elif message.startswith("(server_param"):
