@@ -24,3 +24,4 @@ def analyzeVisualMessage(message, play_mode, dKickOffX, dKickOffY):
     d_ball_y = d_y + ball_dist * math.sin(rad)
 
     result = {"neck":d_neck, "x":d_x, "y":d_y, "ball_x":d_ball_x, "ball_y":d_ball_y}
+    return result

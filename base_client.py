@@ -104,10 +104,9 @@ class BaseClient(threading.Thread):
             self.physical_result, self.player_type_result)
         # 聴覚メッセージの処理
         elif message.startswith("(hear "):
-            self.aural_result, play_mode = analyze.analyzeAuralMessage(message)
+            self.aural_result = analyze.analyzeAuralMessage(message)
             # プレイモードが観測できたら更新
-            if play_mode == "":
-                self.play_mode = play_mode
+            self.play_mode = self.aural_result["play_mode"]
         # サーバパラメータの処理
         elif message.startswith("(server_param"):
             self.server_param_result = analyze.analyzeServerParam(message)
@@ -129,6 +128,15 @@ class BaseClient(threading.Thread):
                 + str(self.m_kick_off_y) + ")"
             print(command)
             self.send(command)
+
+        # デバッグ
+        if self.m_iNumber == 1:
+            print(init_result)
+            print(visual_result)
+            print(aural_result)
+            print(physical_result)
+            print(player_type_result)
+            print("===================")
 
     def setKickOffPosition(self):
         with open("./formation/init.csv", "r") as f:

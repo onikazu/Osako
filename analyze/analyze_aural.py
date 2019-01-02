@@ -8,5 +8,5 @@ def analyzeAuralMessage(message):
     play_mode = ""
     if str_speaker == "referee":
         play_mode = str_content
-    result = {"speaker":str_speaker, "content":str_content}
-    return result, play_mode
+    result = {"speaker":str_speaker, "content":str_content, "play_mode":play_mode}
+    return result
