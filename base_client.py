@@ -107,6 +107,10 @@ class BaseClient(threading.Thread):
             self.aural_result = analyze.analyzeAuralMessage(message)
             # プレイモードが観測できたら更新
             self.play_mode = self.aural_result["play_mode"]
+        # 視覚メッセージの更新
+        elif　message.startswith("(see "):
+            self.visual_result = analyze.analyzeVisualMessage(message)
+
         # サーバパラメータの処理
         elif message.startswith("(server_param"):
             self.server_param_result = analyze.analyzeServerParam(message)
