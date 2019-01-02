@@ -31,7 +31,7 @@ class BaseClient(threading.Thread):
 
         # メッセージの解析結果を代入する変数
         self.init_result = {}
-        self.visual_result = {}
+        self.visual_result = {"neck":0, "x":0, "y":0, "ball_x":0, "ball_y":0}
         self.physical_result = {}
         self.aural_result = {}
         self.player_type_result = {}
@@ -96,7 +96,8 @@ class BaseClient(threading.Thread):
         # 視覚メッセージの処理
         elif message.startswith("(see "):
            self.visual_result = analyze.analyzeVisualMessage(message, \
-           self.play_mode, self.m_kick_off_x, self.m_kick_off_y)
+           self.play_mode, self.m_kick_off_x, self.m_kick_off_y, \
+           self.visual_result['x'], self.visual_result['y'])
         # 体調メッセージの処理
         elif message.startswith("(sense_body "):
             self.physical_result = analyze.analyzePhysicalMessage(message)
