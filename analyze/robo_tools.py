@@ -6,7 +6,174 @@ robo_tools.py
 import math
 
 OUT_OF_RANGE = 999
-
+strFlagName = []
+dFlagX = []
+dFlagY = []
+strFlagName.append("g r");
+dFlagX.append(52.5);
+dFlagY.append(0.0)
+strFlagName.append("g l");
+dFlagX.append(-52.5);
+dFlagY.append(0.0)
+strFlagName.append("f c t");
+dFlagX.append(0.0);
+dFlagY.append(-34.0)
+strFlagName.append("f c b");
+dFlagX.append(0.0);
+dFlagY.append(+34.0)
+strFlagName.append("f c");
+dFlagX.append(0.0);
+dFlagY.append(0.0)
+strFlagName.append("f p l t");
+dFlagX.append(-36.0);
+dFlagY.append(-20.16)
+strFlagName.append("f p l b");
+dFlagX.append(-36.0);
+dFlagY.append(20.16)
+strFlagName.append("f p l c");
+dFlagX.append(-36.0);
+dFlagY.append(0.0)
+strFlagName.append("f p r t");
+dFlagX.append(36.0);
+dFlagY.append(-20.16)
+strFlagName.append("f p r b");
+dFlagX.append(36.0);
+dFlagY.append(20.16)
+strFlagName.append("f p r c");
+dFlagX.append(36.0);
+dFlagY.append(0.0)
+strFlagName.append("f g l t");
+dFlagX.append(-52.5);
+dFlagY.append(-7.01)
+strFlagName.append("f g l b");
+dFlagX.append(-52.5);
+dFlagY.append(7.01)
+strFlagName.append("f g r t");
+dFlagX.append(52.5);
+dFlagY.append(-7.01)
+strFlagName.append("f g r b");
+dFlagX.append(52.5);
+dFlagY.append(7.01)
+strFlagName.append("f t l 50");
+dFlagX.append(-50.0);
+dFlagY.append(-39.0)
+strFlagName.append("f t l 40");
+dFlagX.append(-40.0);
+dFlagY.append(-39.0)
+strFlagName.append("f t l 30");
+dFlagX.append(-30.0);
+dFlagY.append(-39.0)
+strFlagName.append("f t l 20");
+dFlagX.append(-20.0);
+dFlagY.append(-39.0)
+strFlagName.append("f t l 10");
+dFlagX.append(-10.0);
+dFlagY.append(-39.0)
+strFlagName.append("f t 0");
+dFlagX.append(0.0);
+dFlagY.append(-39.0)
+strFlagName.append("f t r 10");
+dFlagX.append(10.0);
+dFlagY.append(-39.0)
+strFlagName.append("f t r 20");
+dFlagX.append(20.0);
+dFlagY.append(-39.0)
+strFlagName.append("f t r 30");
+dFlagX.append(30.0);
+dFlagY.append(-39.0)
+strFlagName.append("f t r 40");
+dFlagX.append(40.0);
+dFlagY.append(-39.0)
+strFlagName.append("f t r 50");
+dFlagX.append(50.0);
+dFlagY.append(-39.0)
+strFlagName.append("f b l 50");
+dFlagX.append(-50.0);
+dFlagY.append(39.0)
+strFlagName.append("f b l 40");
+dFlagX.append(-40.0);
+dFlagY.append(39.0)
+strFlagName.append("f b l 30");
+dFlagX.append(-30.0);
+dFlagY.append(39.0)
+strFlagName.append("f b l 20");
+dFlagX.append(-20.0);
+dFlagY.append(39.0)
+strFlagName.append("f b l 10");
+dFlagX.append(-10.0);
+dFlagY.append(39.0)
+strFlagName.append("f b 0");
+dFlagX.append(0.0);
+dFlagY.append(39.0)
+strFlagName.append("f b r 10");
+dFlagX.append(10.0);
+dFlagY.append(39.0)
+strFlagName.append("f b r 20");
+dFlagX.append(20.0);
+dFlagY.append(39.0)
+strFlagName.append("f b r 30");
+dFlagX.append(30.0);
+dFlagY.append(39.0)
+strFlagName.append("f b r 40");
+dFlagX.append(40.0);
+dFlagY.append(39.0)
+strFlagName.append("f b r 50");
+dFlagX.append(50.0);
+dFlagY.append(39.0)
+strFlagName.append("f l t 30");
+dFlagX.append(-57.5);
+dFlagY.append(-30.0)
+strFlagName.append("f l t 20");
+dFlagX.append(-57.5);
+dFlagY.append(-20.0)
+strFlagName.append("f l t 10");
+dFlagX.append(-57.5);
+dFlagY.append(-10.0)
+strFlagName.append("f l 0");
+dFlagX.append(-57.5);
+dFlagY.append(0.0)
+strFlagName.append("f l b 10");
+dFlagX.append(-57.5);
+dFlagY.append(10.0)
+strFlagName.append("f l b 20");
+dFlagX.append(-57.5);
+dFlagY.append(20.0)
+strFlagName.append("f l b 30");
+dFlagX.append(-57.5);
+dFlagY.append(30.0)
+strFlagName.append("f r t 30");
+dFlagX.append(57.5);
+dFlagY.append(-30.0)
+strFlagName.append("f r t 20");
+dFlagX.append(57.5);
+dFlagY.append(-20.0)
+strFlagName.append("f r t 10");
+dFlagX.append(57.5);
+dFlagY.append(-10.0)
+strFlagName.append("f r 0");
+dFlagX.append(57.5);
+dFlagY.append(0.0)
+strFlagName.append("f r b 10");
+dFlagX.append(57.5);
+dFlagY.append(10.0)
+strFlagName.append("f r b 20");
+dFlagX.append(57.5);
+dFlagY.append(20.0)
+strFlagName.append("f r b 30");
+dFlagX.append(57.5);
+dFlagY.append(30.0)
+strFlagName.append("f l t");
+dFlagX.append(-52.5);
+dFlagY.append(-34.0)
+strFlagName.append("f l b");
+dFlagX.append(-52.5);
+dFlagY.append(34.0)
+strFlagName.append("f r t");
+dFlagX.append(52.5);
+dFlagY.append(-34.0)
+strFlagName.append("f r b");
+dFlagX.append(52.5);
+dFlagY.append(34.0)
 
 def getParam(message, keyword, number):
     key = "(" + keyword
@@ -118,3 +285,61 @@ def checkInitialMode(play_mode):
         return True
     else:
         return False
+
+def getLandMarker(message, playerX, playerY):
+        # Bの解決
+        message = message.replace("B", "b", 1)
+        # Fの解決
+        if message.find("(F)") > -1:
+            name = "(F)"
+            min_dist = OUT_OF_RANGE
+            for i in range(2, 55):
+                dist = getDistance(playerX, playerY, dFlagX[i], dFlagY[i])
+                if min_dist > dist:
+                    min_dist = dist
+                    name = strFlagName[i]
+            message = message.replace("F", name, 1)
+
+        if message.find("(G)") > -1:
+            name = "(G)"
+            min_dist = OUT_OF_RANGE
+            for i in range(2):
+                dist = getDistance(playerX, playerY, dFlagX[i], dFlagY[i])
+                if min_dist > dist:
+                    min_dist = dist
+                    name = strFlagName[i]
+            message = message.replace("G", name, 1)
+
+def estimatePosition(self, message, neckDir, playerX, playerY):
+        result = {"x": 999, "y": 999}
+        message = getLandMarker(message, playerX, playerY)
+
+        flag = getObjectMessage(message, "((g") + \
+               getObjectMessage(message, "((f")
+        index0 = flag.find("((")
+        X = Y = W = S = 0.0
+        flags = 0
+        while index0 > -1:
+            index1 = flag.find(")", index0 + 2)
+            index2 = flag.find(")", index1 + 1)
+            name = flag[index0 + 2:index1]
+            # print("name", name)
+            j = 0
+            while strFlagName[j].endswith(name) is False:
+                j += 1
+                # if j >= 50:
+                #     print("j", j, "name", name)
+            dist = getParam(flag, name, 1)
+            dir = getParam(flag, name, 2)
+            rad = math.radians(normalizeAngle(dir + neckDir))
+            W = 1 / dist
+            X += W * (dFlagX[j] - dist * math.cos(rad))
+            Y += W * (dFlagY[j] - dist * math.sin(rad))
+            S += W
+            flags += 1
+            index0 = flag.find("((", index0 + 2)
+
+        if flags > 0:
+            result["x"] = X / S
+            result["y"] = Y / S
+        return result
