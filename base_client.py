@@ -90,6 +90,8 @@ class BaseClient(threading.Thread):
 
     # messageの解析を行う関数
     def analyzeMessage(self, message):
+        if self.m_iNumber == 1:
+            print(message)
         if message.startswith("(init "):
             self.init_result = analyze.analyzeInitialMessage(message)
             self.play_mode = self.init_result["play_mode"]
