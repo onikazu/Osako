@@ -325,16 +325,14 @@ def estimatePosition(message, neckDir, playerX, playerY):
             index1 = flag.find(")", index0 + 2)
             index2 = flag.find(")", index1 + 1)
             name = flag[index0 + 2:index1]
-            # print("name", name)
             j = 0
             while strFlagName[j].endswith(name) is False:
                 j += 1
-                # if j >= 50:
-                #     print("j", j, "name", name)
             dist = getParam(flag, name, 1)
             dir = getParam(flag, name, 2)
             rad = math.radians(normalizeAngle(dir + neckDir))
-            W = 1 / dist
+            # バグ改善点
+            W = 1 / dist+0.1
             X += W * (dFlagX[j] - dist * math.cos(rad))
             Y += W * (dFlagY[j] - dist * math.sin(rad))
             S += W
