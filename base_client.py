@@ -107,6 +107,7 @@ class BaseClient(threading.Thread):
             self.physical_result, self.player_type_result)
         # 聴覚メッセージの処理
         elif message.startswith("(hear "):
+            print(message)
             self.aural_result = analyze.analyzeAuralMessage(message)
             # プレイモードが観測できたら更新
             self.play_mode = self.aural_result["play_mode"]
