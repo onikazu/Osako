@@ -1,6 +1,7 @@
 import analyze.robo_tools
+import math
 
-def analyzeVisualMessage(message, play_mode, dKickOffX, dKickOff, d_x, d_y):
+def analyzeVisualMessage(message, play_mode, dKickOffX, dKickOffY, d_x, d_y):
     OUT_OF_RANGE = 999
     time = int(analyze.robo_tools.getParam(message, "see", 1))
     if time < 1:
