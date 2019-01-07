@@ -310,7 +310,7 @@ def getLandMarker(message, playerX, playerY):
                     name = strFlagName[i]
             message = message.replace("G", name, 1)
 
-def estimatePosition(self, message, neckDir, playerX, playerY):
+def estimatePosition(message, neckDir, playerX, playerY):
         result = {"x": 999, "y": 999}
         message = getLandMarker(message, playerX, playerY)
 
