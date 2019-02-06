@@ -8,3 +8,7 @@ def init_goalie(team_name, version):
 
 def init_coach(team_name, coach_name, version):
     return "(init {) {} {})".format(team_name, coach_name, version)
+
+
+def turn_neck(moment):
+    return  "(turn_neck {})".format(moment)
