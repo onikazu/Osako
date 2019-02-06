@@ -52,8 +52,8 @@ def analyze_physical_message(message, result):
 
 
 def analyze_player_param(message, result):
-    str_player_param = message
-    result["player_param"] = str_player_param
+    # str_player_param = message
+    # result["player_param"] = str_player_param
     return result
 
 
@@ -62,8 +62,8 @@ def analyze_player_type(message, result):
     # print(message)
     id = int(robo_tools.getParam(message, "id", 1))
     # print("id: ", id)
-    result["id"] = id
-    result["player_type"] = message
+    # result["id"] = id
+    # result["player_type"] = message
     return result
 
 
@@ -95,6 +95,6 @@ def analyze_visual_message(message, result, kick_off_x, kick_off_y):
 
 def analyze_server_param(message, result):
     # print("serverParam: ", message)
-    str_server_param = message
-    result["server_param"] = str_server_param
+    # str_server_param = message
+    # result["server_param"] = str_server_param
     return result
