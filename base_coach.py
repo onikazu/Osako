@@ -83,54 +83,6 @@ class BaseCoach(threading.Thread):
         while True:
             message = self.receive()
             # print(message)
-            self.analyze_message(message)
-
-    # messageの解析を行う関数
-    def analyze_message(self, message):
-        if message.startswith("(init "):
-            self.analyze_result = analyze.analyze_initial_message(message, self.analyze_result)
-        # 視覚メッセージの処理
-        elif message.startswith("(see "):
-           self.analyze_result = analyze.analyze_visual_message(message, self.analyze_result, self.m_kick_off_x, self.m_kick_off_y)
-        # 体調メッセージの処理
-        elif message.startswith("(sense_body "):
-            self.analyze_result = analyze.analyzePhysicalMessage(message, self.analyze_result)
-            self.play(self.analyze_result)
-        # 聴覚メッセージの処理
-        elif message.startswith("(hear "):
-            self.analyze_result = analyze.analyzeAuralMessage(message, self.analyze_result)
-            # プレイモードが観測できたら更新
-            self.play_mode = self.analyze_result["play_mode"]
-        # サーバパラメータの処理
-        elif message.startswith("(server_param"):
-            self.analyze_result = analyze.analyzeServerParam(message, self.analyze_result)
-        # プレーヤーパラメータの処理
-        elif message.startswith("(player_param"):
-            self.analyze_result = analyze.analyzePlayerParam(message, self.analyze_result)
-        # プレーヤータイプの処理
-        elif message.startswith("(player_type"):
-            self.analyze_result = analyze.analyzePlayerType(message, self.analyze_result)
-        # エラーの処理
-        else:
-            print("サーバーからエラーが伝えられた:", message)
-            print("エラー発生原因のコマンドは右記の通り :", self.m_strCommand)
-
-    def play(self, result):
-        if analyze.checkInitialMode(result["play_mode"]):
-            self.setKickOffPosition()
-            command = "(move " + str(self.m_kick_off_x) + " " \
-                + str(self.m_kick_off_y) + ")"
-            print(command)
-            self.send(command)
-
-    def setKickOffPosition(self):
-        with open("./formation/init.csv", "r") as f:
-            reader = csv.reader(f)
-            header = next(reader)
-            for row in reader:
-                if self.m_iNumber == int(row[0]):
-                    self.m_kick_off_x = int(row[1])
-                    self.m_kick_off_y = int(row[2])
 
 
 if __name__ == "__main__":
