@@ -99,8 +99,6 @@ class BaseClient(threading.Thread):
 
     # messageの解析を行う関数
     def analyze_message(self, message):
-        if self.m_iNumber == 1:
-            print(message)
         if message.startswith("(init "):
             print("init:self.analyze_result", self.analyze_result)
             self.analyze_result = analyze.analyze_initial_message(message, self.analyze_result)
