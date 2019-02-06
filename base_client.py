@@ -48,6 +48,7 @@ class BaseClient(threading.Thread):
             "id": 0,
             "player_type": ""
         }
+        print("__init__:self.analyze_result", self.analyze_result)
 
         # コマンドを代入する変数
         self.m_strCommand = ""
@@ -101,14 +102,16 @@ class BaseClient(threading.Thread):
         if self.m_iNumber == 1:
             print(message)
         if message.startswith("(init "):
+            print("init:self.analyze_result", self.analyze_result)
             self.analyze_result = analyze.analyze_initial_message(message, self.analyze_result)
         # 視覚メッセージの処理
         elif message.startswith("(see "):
+            print("see:self.analyze_result", self.analyze_result)
             self.analyze_result = analyze.analyze_visual_message(message, self.analyze_result, self.m_kick_off_x,
                                                                  self.m_kick_off_y)
         # 体調メッセージの処理
         elif message.startswith("(sense_body "):
-            print("self.analyze_result", self.analyze_result)
+            print("sense body: self.analyze_result", self.analyze_result)
             self.analyze_result = analyze.analyze_physical_message(message, self.analyze_result)
             self.play(self.analyze_result)
         # 聴覚メッセージの処理
