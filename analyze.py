@@ -90,6 +90,8 @@ def analyze_visual_message(message, result, kick_off_x, kick_off_y):
     result["ball_x"] = result["x"] + ball_dist * math.cos(rad)
     result["ball_y"] = result["y"] + ball_dist * math.sin(rad)
 
+    print("anavi: result", result)
+
     return result
 
 
