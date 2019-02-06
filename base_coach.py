@@ -10,6 +10,7 @@ import os
 import csv
 
 from analyze import *
+import generate_command as gc
 
 
 class BaseCoach(threading.Thread):
@@ -83,9 +84,9 @@ class BaseCoach(threading.Thread):
         self.m_strHostName = server_name
         self.PORT = server_port
         if self.m_iNumber == 1:
-            command = "(init " + self.m_strTeamName + "(goalie)(version 15.40))"
+            command = gc.init_coach("LeftTeam", "LeftCoach", "15.40")
         else:
-            command = "(init " + self.m_strTeamName + "(version 15.40))"
+            command = gc.init_coach("LeftTeam", "RightCoach", "15.40")
         self.send(command)
 
     # thread を動かしている最中に行われる関数
