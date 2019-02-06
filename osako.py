@@ -26,3 +26,17 @@ class Osako(base_client.BaseClient, threading.Thread):
         else:
             self.m_strCommand = gc.turn_neck(-90)
             self.neck_flag = 1
+
+
+if __name__ == "__main__":
+    players = []
+    for i in range(22):
+        p = Osako()
+        players.append(p)
+        if i < 11:
+            team_name = "Left"
+        else:
+            team_name = "Right"
+        players[i].initialize(i % 11 + 1, team_name, "localhost", 6000)
+        players[i].start()
+    print("試合登録完了")
