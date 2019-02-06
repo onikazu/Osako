@@ -100,23 +100,24 @@ class BaseClient(threading.Thread):
     # messageの解析を行う関数
     def analyze_message(self, message):
         if message.startswith("(init "):
-            print("init:self.analyze_result", self.analyze_result)
             self.analyze_result = analyze.analyze_initial_message(message, self.analyze_result)
+            print("init:self.analyze_result", self.analyze_result)
         # 視覚メッセージの処理
         elif message.startswith("(see "):
-            print("see:self.analyze_result", self.analyze_result)
             self.analyze_result = analyze.analyze_visual_message(message, self.analyze_result, self.m_kick_off_x,
                                                                  self.m_kick_off_y)
+            print("see:self.analyze_result", self.analyze_result)
         # 体調メッセージの処理
         elif message.startswith("(sense_body "):
-            print("sense body: self.analyze_result", self.analyze_result)
             self.analyze_result = analyze.analyze_physical_message(message, self.analyze_result)
             self.play(self.analyze_result)
+            print("sense body: self.analyze_result", self.analyze_result)
         # 聴覚メッセージの処理
         elif message.startswith("(hear "):
             self.analyze_result = analyze.analyze_aural_message(message, self.analyze_result)
             # プレイモードが観測できたら更新
             self.play_mode = self.analyze_result["play_mode"]
+            print("hear: self.analyze_result", self.analyze_result)
         # サーバパラメータの処理
         elif message.startswith("(server_param"):
             self.analyze_result = analyze.analyze_server_param(message, self.analyze_result)
