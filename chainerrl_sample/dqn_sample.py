@@ -81,7 +81,6 @@ agent = chainerrl.agents.DoubleDQN(
     target_update_interval=100, phi=phi)
 
 
-
 n_episodes = 200
 max_episode_len = 200
 for i in range(1, n_episodes + 1):
