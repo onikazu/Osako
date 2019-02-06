@@ -75,7 +75,7 @@ class BaseCoach(threading.Thread):
         self.m_strTeamName = team_name
         self.m_strHostName = server_name
         self.PORT = server_port
-        command = gc.init_coach("OsakoTeam", "OsakoCoach", "15.40")
+        command = gc.init_coach(team_name, "OsakoCoach", "15.40")
         self.send(command)
 
     # thread を動かしている最中に行われる関数
