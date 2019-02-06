@@ -153,7 +153,7 @@ class BaseCoach(threading.Thread):
 if __name__ == "__main__":
     players = []
     for i in range(22):
-        p = BaseClient()
+        p = BaseCoach()
         players.append(p)
         if i < 11:
             team_name = "Left"
