@@ -128,8 +128,9 @@ class BaseClient(threading.Thread):
             self.analyze_result = analyze.analyze_player_type(message, self.analyze_result)
         # エラーの処理
         else:
-            print("サーバーからエラーが伝えられた:", message)
-            print("エラー発生原因のコマンドは右記の通り :", self.m_strCommand)
+            pass
+            # print("サーバーからエラーが伝えられた:", message)
+            # print("エラー発生原因のコマンドは右記の通り :", self.m_strCommand)
 
     def play(self, result):
         if robo_tools.checkInitialMode(result["play_mode"]):
