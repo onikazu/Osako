@@ -37,6 +37,7 @@ def analyze_initial_message(message, result):
 
 
 def analyze_physical_message(message, result):
+    print("result: ", result)
     i_time = int(robo_tools.getParam(message, "sense_body", 1))
     # スタミナ情報の解析
     d_stamina = 0.0
