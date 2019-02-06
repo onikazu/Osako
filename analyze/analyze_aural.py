@@ -1,4 +1,4 @@
-def analyzeAuralMessage(message):
+def analyzeAuralMessage(message, result):
     index0 = message.find(" ")
     index1 = message.find(" ", index0+1)
     index2 = message.find(" ", index1+1)
@@ -8,5 +8,7 @@ def analyzeAuralMessage(message):
     play_mode = ""
     if str_speaker == "referee":
         play_mode = str_content
-    result = {"speaker":str_speaker, "content":str_content, "play_mode":play_mode}
+    result["speaker"] = str_speaker
+    result["content"] = str_content
+    result["play_mode"] = play_mode
     return result

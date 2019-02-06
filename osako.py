@@ -16,6 +16,5 @@ class Osako(base_client.BaseClient, threading.Thread):
     def __init__(self):
         super(Osako, self).__init__()
 
-
     def play(self, init_result, visual_result, aural_result, physical_result, player_type_result):
         super().play(init_result, visual_result, aural_result, physical_result, player_type_result)

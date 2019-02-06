@@ -38,11 +38,29 @@ class BaseClient(threading.Thread):
         self.player_param_result = {}
         self.server_param_result = {}
 
+        # メッセージの解析結果を代入する変数
+        self.analyze_result = {
+            "side": "",
+            "number": 0,
+            "play_mode": "",
+            "neck": 0,
+            "x": 0,
+            "y": 0,
+            "ball_x": 0,
+            "ball_y": 0,
+            "time": 0,
+            "stamina": 0,
+            "speaker": "",
+            "content": "",
+            "server_param": "",
+            "player_param": "",
+            "id": 0,
+            "player_type": ""
+        }
+
         # コマンドを代入する変数
         self.m_strCommand = ""
 
-        # フィールドのモードを代入する変数
-        self.play_mode = ""
 
     # コマンドの送信
     def send(self, command):
@@ -93,42 +111,35 @@ class BaseClient(threading.Thread):
         if self.m_iNumber == 1:
             print(message)
         if message.startswith("(init "):
-            self.init_result = analyze.analyzeInitialMessage(message)
-            self.play_mode = self.init_result["play_mode"]
+            self.analyze_result = analyze.analyzeInitialMessage(message, self.analyze_result)
         # 視覚メッセージの処理
         elif message.startswith("(see "):
-           result = analyze.analyzeVisualMessage(message, \
-           self.play_mode, self.m_kick_off_x, self.m_kick_off_y, \
-           self.visual_result["x"], self.visual_result["y"])
-           if result:
-               self.visual_result = result
+           self.analyze_result = analyze.analyzeVisualMessage(message, self.analyze_result, self.m_kick_off_x, self.m_kick_off_y)
         # 体調メッセージの処理
         elif message.startswith("(sense_body "):
-            self.physical_result = analyze.analyzePhysicalMessage(message)
-            self.play(self.init_result, self.visual_result, self.aural_result, \
-            self.physical_result, self.player_type_result)
+            self.analyze_result = analyze.analyzePhysicalMessage(message, self.analyze_result)
+            self.play(self.analyze_result)
         # 聴覚メッセージの処理
         elif message.startswith("(hear "):
-            print(message)
-            self.aural_result = analyze.analyzeAuralMessage(message)
+            self.analyze_result = analyze.analyzeAuralMessage(message, self.analyze_result)
             # プレイモードが観測できたら更新
-            self.play_mode = self.aural_result["play_mode"]
+            self.play_mode = self.analyze_result["play_mode"]
         # サーバパラメータの処理
         elif message.startswith("(server_param"):
-            self.server_param_result = analyze.analyzeServerParam(message)
+            self.analyze_result = analyze.analyzeServerParam(message, self.analyze_result)
         # プレーヤーパラメータの処理
         elif message.startswith("(player_param"):
-            self.player_param_result = analyze.analyzePlayerParam(message)
+            self.analyze_result = analyze.analyzePlayerParam(message, self.analyze_result)
         # プレーヤータイプの処理
         elif message.startswith("(player_type"):
-            self.player_type_result = analyze.analyzePlayerType(message)
+            self.analyze_result = analyze.analyzePlayerType(message, self.analyze_result)
         # エラーの処理
         else:
             print("サーバーからエラーが伝えられた:", message)
             print("エラー発生原因のコマンドは右記の通り :", self.m_strCommand)
 
-    def play(self, init_result, visual_result, aural_result, physical_result, player_type_result):
-        if analyze.checkInitialMode(self.play_mode):
+    def play(self, result):
+        if analyze.checkInitialMode(result["play_mode"]):
             self.setKickOffPosition()
             command = "(move " + str(self.m_kick_off_x) + " " \
                 + str(self.m_kick_off_y) + ")"
@@ -137,11 +148,7 @@ class BaseClient(threading.Thread):
 
         # デバッグ
         if self.m_iNumber == 1:
-            print(init_result)
-            print(visual_result)
-            print(aural_result)
-            print(physical_result)
-            print(player_type_result)
+            print(result)
             print("===================")
 
     def setKickOffPosition(self):
