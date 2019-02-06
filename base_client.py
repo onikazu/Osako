@@ -9,7 +9,8 @@ import sys
 import os
 import csv
 
-from analyze import *
+import analyze
+import robo_tools
 
 
 class BaseClient(threading.Thread):
@@ -27,15 +28,6 @@ class BaseClient(threading.Thread):
         self.m_strHostName = ""
         self.m_kick_off_x = 0
         self.m_kick_off_y = 0
-
-        # メッセージの解析結果を代入する変数
-        self.init_result = {}
-        self.visual_result = {"neck":0, "x":0, "y":0, "ball_x":0, "ball_y":0}
-        self.physical_result = {}
-        self.aural_result = {}
-        self.player_type_result = {}
-        self.player_param_result = {}
-        self.server_param_result = {}
 
         # メッセージの解析結果を代入する変数
         self.analyze_result = {
@@ -102,45 +94,46 @@ class BaseClient(threading.Thread):
         while True:
             message = self.receive()
             # print(message)
-            self.analyzeMessage(message)
+            self.analyze_message(message)
 
     # messageの解析を行う関数
-    def analyzeMessage(self, message):
+    def analyze_message(self, message):
         if self.m_iNumber == 1:
             print(message)
         if message.startswith("(init "):
-            self.analyze_result = analyze.analyzeInitialMessage(message, self.analyze_result)
+            self.analyze_result = analyze.analyze_initial_message(message, self.analyze_result)
         # 視覚メッセージの処理
         elif message.startswith("(see "):
-           self.analyze_result = analyze.analyzeVisualMessage(message, self.analyze_result, self.m_kick_off_x, self.m_kick_off_y)
+            self.analyze_result = analyze.analyze_visual_message(message, self.analyze_result, self.m_kick_off_x,
+                                                                 self.m_kick_off_y)
         # 体調メッセージの処理
         elif message.startswith("(sense_body "):
-            self.analyze_result = analyze.analyzePhysicalMessage(message, self.analyze_result)
+            self.analyze_result = analyze.analyze_physical_message(message, self.analyze_result)
             self.play(self.analyze_result)
         # 聴覚メッセージの処理
         elif message.startswith("(hear "):
-            self.analyze_result = analyze.analyzeAuralMessage(message, self.analyze_result)
+            self.analyze_result = analyze.analyze_aural_message(message, self.analyze_result)
             # プレイモードが観測できたら更新
             self.play_mode = self.analyze_result["play_mode"]
         # サーバパラメータの処理
         elif message.startswith("(server_param"):
-            self.analyze_result = analyze.analyzeServerParam(message, self.analyze_result)
+            self.analyze_result = analyze.analyze_server_param(message, self.analyze_result)
         # プレーヤーパラメータの処理
         elif message.startswith("(player_param"):
-            self.analyze_result = analyze.analyzePlayerParam(message, self.analyze_result)
+            self.analyze_result = analyze.analyze_player_param(message, self.analyze_result)
         # プレーヤータイプの処理
         elif message.startswith("(player_type"):
-            self.analyze_result = analyze.analyzePlayerType(message, self.analyze_result)
+            self.analyze_result = analyze.analyze_player_type(message, self.analyze_result)
         # エラーの処理
         else:
             print("サーバーからエラーが伝えられた:", message)
             print("エラー発生原因のコマンドは右記の通り :", self.m_strCommand)
 
     def play(self, result):
-        if analyze.checkInitialMode(result["play_mode"]):
-            self.setKickOffPosition()
+        if robo_tools.checkInitialMode(result["play_mode"]):
+            self.set_kick_off_position()
             command = "(move " + str(self.m_kick_off_x) + " " \
-                + str(self.m_kick_off_y) + ")"
+                      + str(self.m_kick_off_y) + ")"
             print(command)
             self.send(command)
 
@@ -149,7 +142,7 @@ class BaseClient(threading.Thread):
             print(result)
             print("===================")
 
-    def setKickOffPosition(self):
+    def set_kick_off_position(self):
         with open("./formation/init.csv", "r") as f:
             reader = csv.reader(f)
             header = next(reader)
@@ -168,6 +161,6 @@ if __name__ == "__main__":
             team_name = "Left"
         else:
             team_name = "Right"
-        players[i].initialize(i%11+1, team_name, "localhost", 6000)
+        players[i].initialize(i % 11 + 1, team_name, "localhost", 6000)
         players[i].start()
     print("試合登録完了")

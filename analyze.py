@@ -1,4 +1,11 @@
-def analyzeAuralMessage(message, result):
+import robo_tools
+import math
+
+
+OUT_OF_RANGE = 999
+
+
+def analyze_aural_message(message, result):
     index0 = message.find(" ")
     index1 = message.find(" ", index0+1)
     index2 = message.find(" ", index1+1)
@@ -14,7 +21,7 @@ def analyzeAuralMessage(message, result):
     return result
 
 
-def analyzeInitialMessage(message, result):
+def analyze_initial_message(message, result):
     index0 = message.index(" ")
     index1 = message.index(" ", index0 + 1)
     index2 = message.index(" ", index1 + 1)
@@ -29,9 +36,8 @@ def analyzeInitialMessage(message, result):
     return result
 
 
-
-def analyzePhysicalMessage(message, result):
-    i_time = int(analyze.robo_tools.getParam(message, "sense_body", 1))
+def analyze_physical_message(message, result):
+    i_time = int(robo_tools.getParam(message, "sense_body", 1))
     # スタミナ情報の解析
     d_stamina = 0.0
     st = message.split(" ")
@@ -44,17 +50,50 @@ def analyzePhysicalMessage(message, result):
     return result
 
 
-def analyzePlayerParam(message, result):
+def analyze_player_param(message, result):
     str_player_param = message
     result["player_param"] = str_player_param
     return result
 
 
-def analyzePlayerType(message, result):
+def analyze_player_type(message, result):
     # print("m_strPlayerType: ", self.m_strPlayerType)
     # print(message)
-    id = int(analyze.robo_tools.getParam(message, "id", 1))
+    id = int(robo_tools.getParam(message, "id", 1))
     # print("id: ", id)
     result["id"] = id
     result["player_type"] = message
+    return result
+
+
+def analyze_visual_message(message, result, kick_off_x, kick_off_y):
+    time = int(robo_tools.getParam(message, "see", 1))
+    play_mode = result["play_mode"]
+    if time < 1:
+        return
+    result["neck"] = robo_tools.getNeckDir(message)
+    if result["neck"] == OUT_OF_RANGE:
+        return
+    if robo_tools.checkInitialMode(play_mode):
+        result["x"] = kick_off_x
+        result["y"] = kick_off_y
+
+    pos = robo_tools.estimatePosition(message, result["neck"], result["x"], result["y"])
+    result["x"] = pos["x"]
+    result["y"] = pos["y"]
+    if message.find("(b)") == -1:
+        return
+    ball_dist = robo_tools.getParam(message, "(b)", 1)
+    ball_dir = robo_tools.getParam(message, "(b)", 2)
+    rad = math.radians(robo_tools.normalizeAngle(result["neck"] + ball_dir))
+    result["ball_x"] = result["x"] + ball_dist * math.cos(rad)
+    result["ball_y"] = result["y"] + ball_dist * math.sin(rad)
+
+    return result
+
+
+def analyze_server_param(message, result):
+    # print("serverParam: ", message)
+    str_server_param = message
+    result["server_param"] = str_server_param
     return result
