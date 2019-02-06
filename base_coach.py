@@ -82,7 +82,7 @@ class BaseCoach(threading.Thread):
     def run(self):
         while True:
             message = self.receive()
-            # print(message)
+            print(message)
 
 
 if __name__ == "__main__":
