@@ -71,10 +71,10 @@ def analyze_visual_message(message, result, kick_off_x, kick_off_y):
     time = int(robo_tools.getParam(message, "see", 1))
     play_mode = result["play_mode"]
     if time < 1:
-        return
+        return result
     result["neck"] = robo_tools.getNeckDir(message)
     if result["neck"] == OUT_OF_RANGE:
-        return
+        return result
     if robo_tools.checkInitialMode(play_mode):
         result["x"] = kick_off_x
         result["y"] = kick_off_y
@@ -83,7 +83,7 @@ def analyze_visual_message(message, result, kick_off_x, kick_off_y):
     result["x"] = pos["x"]
     result["y"] = pos["y"]
     if message.find("(b)") == -1:
-        return
+        return result
     ball_dist = robo_tools.getParam(message, "(b)", 1)
     ball_dir = robo_tools.getParam(message, "(b)", 2)
     rad = math.radians(robo_tools.normalizeAngle(result["neck"] + ball_dir))
