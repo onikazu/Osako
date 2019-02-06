@@ -12,7 +12,7 @@ import csv
 from analyze import *
 
 
-class BaseClient(threading.Thread):
+class BaseCoach(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         # サーバ接続のための変数
@@ -27,15 +27,6 @@ class BaseClient(threading.Thread):
         self.m_strHostName = ""
         self.m_kick_off_x = 0
         self.m_kick_off_y = 0
-
-        # メッセージの解析結果を代入する変数
-        self.init_result = {}
-        self.visual_result = {"neck":0, "x":0, "y":0, "ball_x":0, "ball_y":0}
-        self.physical_result = {}
-        self.aural_result = {}
-        self.player_type_result = {}
-        self.player_param_result = {}
-        self.server_param_result = {}
 
         # メッセージの解析結果を代入する変数
         self.analyze_result = {
