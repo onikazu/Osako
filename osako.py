@@ -26,6 +26,7 @@ class Osako(base_client.BaseClient, threading.Thread):
         else:
             self.m_strCommand = gc.turn_neck(-90)
             self.neck_flag = 1
+        self.send(self.m_strCommand)
 
 
 if __name__ == "__main__":
