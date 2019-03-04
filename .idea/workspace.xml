@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="08eeb839-7ea7-4cd6-ab63-efebb875a500" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/base_coach.py" beforeDir="false" afterPath="$PROJECT_DIR$/base_coach.py" afterDir="false" />
-    </list>
+    <list default="true" id="08eeb839-7ea7-4cd6-ab63-efebb875a500" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +28,8 @@
           <file leaf-file-name="base_coach.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/base_coach.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="338">
-                  <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
+                <state relative-caret-position="443">
+                  <caret line="84" column="14" selection-start-line="84" selection-start-column="14" selection-end-line="84" selection-end-column="14" />
                 </state>
               </provider>
             </entry>
@@ -62,8 +60,8 @@
           <file leaf-file-name="generate_command.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/generate_command.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="14" selection-start-line="14" selection-end-line="14" />
+                <state relative-caret-position="150">
+                  <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
                 </state>
               </provider>
             </entry>
@@ -98,8 +96,8 @@
         <option value="$PROJECT_DIR$/base_client.py" />
         <option value="$PROJECT_DIR$/analyze/analyze_player_type.py" />
         <option value="$PROJECT_DIR$/analyze.py" />
-        <option value="$PROJECT_DIR$/generate_command.py" />
         <option value="$PROJECT_DIR$/base_coach.py" />
+        <option value="$PROJECT_DIR$/generate_command.py" />
       </list>
     </option>
   </component>
@@ -159,7 +157,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-137" y="-1080" width="1920" height="1080" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32935324" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -555,13 +552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generate_command.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/base_client.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="682">
@@ -571,8 +561,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/base_coach.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
+        <state relative-caret-position="443">
+          <caret line="84" column="14" selection-start-line="84" selection-start-column="14" selection-end-line="84" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generate_command.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
         </state>
       </provider>
     </entry>

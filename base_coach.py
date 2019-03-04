@@ -95,7 +95,6 @@ if __name__ == "__main__":
             team_name = "Left"
         else:
             team_name = "Right"
-        print(team_name)
         players[i].initialize(i%11+1, team_name, "localhost", 6000)
         players[i].start()
     print("試合登録完了")
