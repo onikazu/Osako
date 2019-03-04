@@ -7,7 +7,9 @@ def init_goalie(team_name, version):
 
 
 def init_coach(team_name, coach_name, version):
-    return "(init {} {} {})".format(team_name, coach_name, version)
+    command = "(init {} {} {})".format(team_name, coach_name, version)
+    print(command)
+    return command
 
 
 def turn_neck(moment):
