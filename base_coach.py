@@ -90,6 +90,7 @@ if __name__ == "__main__":
     for i in range(22):
         p = BaseCoach()
         players.append(p)
+        team_name = ""
         if i < 11:
             team_name = "Left"
         else:
